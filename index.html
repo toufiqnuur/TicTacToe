@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example</title>
+</head>
+<body>
+
+
+  <style type="text/css" media="all">
+    td {
+      width: 100px;
+      height: 100px;
+      background: black;
+      color: white;
+      line-height: 100px;
+      text-align: center;
+      font-size: 3rem;
+    }
+  </style>
+  <button type="submit">Reset</button>
+  <table border="0">
+    <tr>
+      <td id="1"></td>
+      <td id="2"></td>
+      <td id="3"></td>
+    </tr>
+    <tr>
+      <td id="4"></td>
+      <td id="5"></td>
+      <td id="6"></td>
+    </tr>
+    <tr>
+      <td id="7"></td>
+      <td id="8"></td>
+      <td id="9"></td>
+    </tr>
+  </table>
+  <script>
+
+    const block = document.querySelector("table");
+    const reset = document.querySelector("button");
+
+    let selected = []; //save selected id from blocks
+    let player = ''; //save recent player
+
+
+    block.addEventListener('click', (e)=> {
+      if (selected.length <= 8) {
+        let id = e.target.id; //get id was clicked
+
+        player == 'O'?output(id, 'X'): output(id, 'O');
+        selected.push(id); //input selected id
+      }
+    })
+
+    reset.addEventListener('click', ()=> {
+      selected.forEach(x => output(x, ''));
+      selected = []; //reset
+    })
+
+    function output(id, val) {
+      player = val;
+      document.getElementById(id).innerHTML = val;
+    }
+  </script>
+</body>
+</html>
